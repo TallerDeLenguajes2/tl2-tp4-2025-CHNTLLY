@@ -1,0 +1,62 @@
+[
+    {
+        "Id": 1,
+        "Nombre": "Juan Pérez",
+        "Direccion": "Av. Mitre 123, San Miguel de Tucumán",
+        "Telefono": "3814567890"
+    },
+    {
+        "Id": 2,
+        "Nombre": "María López",
+        "Direccion": "Calle San Martín 456, Yerba Buena",
+        "Telefono": "3815123456"
+    },
+    {
+        "Id": 3,
+        "Nombre": "Carlos Gómez",
+        "Direccion": "Belgrano 890, Tafí Viejo",
+        "Telefono": "3814789654"
+    },
+    {
+        "Id": 4,
+        "Nombre": "Lucía Fernández",
+        "Direccion": "Rivadavia 321, Alderetes",
+        "Telefono": "3814231987"
+    },
+    {
+        "Id": 5,
+        "Nombre": "José Rodríguez",
+        "Direccion": "Italia 678, Banda del Río Salí",
+        "Telefono": "3814657321"
+    },
+    {
+        "Id": 6,
+        "Nombre": "Ana García",
+        "Direccion": "Las Heras 159, Monteros",
+        "Telefono": "3814998877"
+    },
+    {
+        "Id": 7,
+        "Nombre": "Martín Herrera",
+        "Direccion": "Av. Aconquija 2000, Yerba Buena",
+        "Telefono": "3814765432"
+    },
+    {
+        "Id": 8,
+        "Nombre": "Sofía Morales",
+        "Direccion": "25 de Mayo 765, Concepción",
+        "Telefono": "3814321987"
+    },
+    {
+        "Id": 9,
+        "Nombre": "Diego Castro",
+        "Direccion": "San Lorenzo 1470, Aguilares",
+        "Telefono": "3814455667"
+    },
+    {
+        "Id": 10,
+        "Nombre": "Camila Rojas",
+        "Direccion": "Av. Mate de Luna 3500, San Miguel de Tucumán",
+        "Telefono": "3814223344"
+    }
+]
