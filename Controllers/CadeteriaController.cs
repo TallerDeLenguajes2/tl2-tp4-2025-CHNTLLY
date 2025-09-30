@@ -1,3 +1,5 @@
+using AccesoADatos;
+using EspacioPedido;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EspacioCadeteriaControllers
@@ -6,19 +8,16 @@ namespace EspacioCadeteriaControllers
     [Route("api/{controller}")]
     public class CadeteriaController : ControllerBase
     {
+        private AccesoADatosJSON accesoADatos;
         public CadeteriaController()
         {
-
+            accesoADatos = new AccesoADatosJSON();
         }
         [HttpGet]
-        public IActionResult HolaMundo()
+        public IActionResult GetPedidos()
         {
-            return BadRequest("todo bien!!!!");
-        }
-        [HttpGet("Buscar/{ID}")]
-        public IActionResult Buscar(int ID)
-        {
-            return Ok(ID);
+            List<Pedido> listadoPedidos = accesoADatos.LeerPedidos("./data/datosPedidos.json");
+            return Ok(listadoPedidos);
         }
     }
 }

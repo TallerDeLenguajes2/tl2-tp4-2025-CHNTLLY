@@ -1,21 +1,34 @@
 using EspacioCliente;
 using EspacioCadete;
+using System.Text.Json.Serialization;
+
 namespace EspacioPedido
 {
     public class Pedido
     {
-        private int numero;
-        private string observacion;
+        public int numero { get; set; }
+        public string observacion { get; set; }
         public Cliente cliente { get; set; }
-        private bool estado;
-        private Cadete cadete;
+        public bool estado { get; set; }
+        public Cadete cadete { get; set; }
 
-        public Cadete Cadete
+        [JsonConstructor]
+        public Pedido(int numero, string observacion, bool estado)
         {
-            get => cadete;
-            set => cadete = value;
+            this.numero = numero;
+            this.observacion = observacion;
+            this.estado = estado;
+            this.cliente = new Cliente("\0", "\0", "\0", "\0");
+            this.cadete = new Cadete(-999, "\0", "\0", "\0");
         }
-
+        // public Pedido(int numero, string observaciones, bool estado)
+        // {
+        //     this.numero = numero;
+        //     this.observacion = observaciones;
+        //     this.cliente = new Cliente("\0", "\0", "\0", "\0");
+        //     this.estado = estado;
+        //     this.cadete = new Cadete(-999, "\0", "\0", "\0");
+        // }
         public Pedido(string nroPedido, string observaciones, string nombreClientePedido, string direccionClientePedido, string telefonoClientePedido, string datosRefPedido, int IdCadetePedido, string nombreCadetePedido, string direccionCadetePedido, string telefonoCadetePedido)
         {
             numero = int.Parse(nroPedido);

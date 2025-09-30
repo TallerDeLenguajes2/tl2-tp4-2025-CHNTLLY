@@ -44,7 +44,7 @@ namespace EspacioCadeteria
             float retorno = 0;
             foreach (Pedido pedido in ListadoPedidos)
             {
-                if (pedido.Cadete.ObtenerIDCadete() == IDcadete && pedido.ObtenerEstado() == true)
+                if (pedido.cadete.ObtenerIDCadete() == IDcadete && pedido.ObtenerEstado() == true)
                 {
                     retorno += 500;
                 }
@@ -68,7 +68,7 @@ namespace EspacioCadeteria
                 {
                     if (pedido.ObtenerNro() == NroPedido)
                     {
-                        pedido.Cadete = cadeteaux;
+                        pedido.cadete = cadeteaux;
                         //pedidoEncontrado = true;
                     }
                 }
@@ -79,7 +79,7 @@ namespace EspacioCadeteria
             int pedidos = 0;
             foreach (Pedido pedido in ListadoPedidos)
             {
-                if (pedido.Cadete.ObtenerIDCadete() == Idcadete)
+                if (pedido.cadete.ObtenerIDCadete() == Idcadete)
                 {
                     pedidos++;
                 }
