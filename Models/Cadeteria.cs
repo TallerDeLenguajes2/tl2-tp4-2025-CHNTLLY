@@ -10,8 +10,8 @@ namespace EspacioCadeteria
         public string Telefono { get; set; }
         public List<Cadete> ListadoCadetes { get; set; } = new List<Cadete>();
         public List<Pedido> ListadoPedidos { get; set; } = new List<Pedido>();
-        public List<InformeCadete> ListadoInforme {get; set;} = new List<InformeCadete>();
-        public InformeGeneral InformeTotal {get; set;}
+        public List<InformeCadete> ListadoInforme { get; set; } = new List<InformeCadete>();
+        public InformeGeneral InformeTotal { get; set; }
 
         public Cadeteria(string nombreInsertar, string telefonoInsertar)
         {
@@ -97,16 +97,30 @@ namespace EspacioCadeteria
                 GananciaTotal += info.Jornal;
                 ContCadetes += 1;
             }
-            InformeGeneral infoG = new InformeGeneral(EnviosTotales, GananciaTotal, EnviosTotales/ContCadetes);
-            return(infoG);
+            InformeGeneral infoG = new InformeGeneral(EnviosTotales, GananciaTotal, EnviosTotales / ContCadetes);
+            return (infoG);
         }
         public void GenerarInformeCadete(Cadete cadeteinforme)
         {
             float jornal = JornalACobrar(cadeteinforme.ObtenerIDCadete());
             string nombreAgregarLista = cadeteinforme.ObtenerNombreCadete();
             int enviosCadete = EnviosRealizados(cadeteinforme.ObtenerIDCadete());
-            InformeCadete nuevo_informe = new InformeCadete(nombreAgregarLista,jornal,enviosCadete);
+            InformeCadete nuevo_informe = new InformeCadete(nombreAgregarLista, jornal, enviosCadete);
             ListadoInforme.Add(nuevo_informe);
+        }
+        public static InformeGeneral GenerarInforme(List<InformeCadete> listadoInformes)
+        {
+            int EnviosTotales = 0;
+            float GananciaTotal = 0;
+            float ContCadetes = 0;
+            foreach (InformeCadete info in listadoInformes)
+            {
+                EnviosTotales += info.Pedidos;
+                GananciaTotal += info.Jornal;
+                ContCadetes += 1;
+            }
+            InformeGeneral infoG = new InformeGeneral(EnviosTotales, GananciaTotal, EnviosTotales / ContCadetes);
+            return (infoG);
         }
     }
 }

@@ -3,6 +3,8 @@ using EspacioCadete;
 using EspacioPedido;
 using System.Text.Json.Nodes;
 using System.Text.Json;
+using EspacioInformeCadeteria;
+using EspacioInformeCadete;
 namespace AccesoADatos
 {
     public interface IAccesoADatos
@@ -21,16 +23,6 @@ namespace AccesoADatos
             listadoCadetes = JsonSerializer.Deserialize<List<Cadete>>(json_string) ?? new List<Cadete>();
             return (listadoCadetes);
         }
-        public Cadeteria LeerCadeteria(string nombre_archivo)
-        {
-            FileInfo info_json = new FileInfo(nombre_archivo);
-            string ruta_json = info_json.FullName; //LEO EL PATH DEL JSON
-            string json_string = File.ReadAllText(ruta_json);
-
-            Cadeteria servicio_cadeteria = new Cadeteria();
-            servicio_cadeteria = JsonSerializer.Deserialize<Cadeteria>(json_string) ?? new Cadeteria();
-            return (servicio_cadeteria);
-        }
         public List<Pedido> LeerPedidos(string nombre_archivo)
         {
             FileInfo info_json = new FileInfo(nombre_archivo);
@@ -40,6 +32,26 @@ namespace AccesoADatos
             List<Pedido> listadopedidos = new List<Pedido>();
             listadopedidos = JsonSerializer.Deserialize<List<Pedido>>(json_string) ?? new List<Pedido>();
             return (listadopedidos);
+        }
+        public List<InformeCadete> LeerInformeCadetes(string nombre_archivo)
+        {
+            FileInfo info_json = new FileInfo(nombre_archivo);
+            string ruta_json = info_json.FullName; //LEO EL PATH DEL JSON
+            string json_string = File.ReadAllText(ruta_json);
+
+            List<InformeCadete> listadoinformes = new List<InformeCadete>();
+            listadoinformes = JsonSerializer.Deserialize<List<InformeCadete>>(json_string) ?? new List<InformeCadete>();
+            return (listadoinformes);
+        }
+        public Cadeteria LeerCadeteria(string nombre_archivo)
+        {
+            FileInfo info_json = new FileInfo(nombre_archivo);
+            string ruta_json = info_json.FullName; //LEO EL PATH DEL JSON
+            string json_string = File.ReadAllText(ruta_json);
+
+            Cadeteria servicio_cadeteria = new Cadeteria();
+            servicio_cadeteria = JsonSerializer.Deserialize<Cadeteria>(json_string) ?? new Cadeteria();
+            return (servicio_cadeteria);
         }
         public Cadeteria LeerArchivo() //metodo viejo, queda sin uso real
         {

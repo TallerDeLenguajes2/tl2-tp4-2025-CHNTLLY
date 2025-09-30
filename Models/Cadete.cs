@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace EspacioCadete
 {
     public class Cadete
@@ -6,14 +8,16 @@ namespace EspacioCadete
         public string Nombre { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
-        public Cadete(int ID_ingresar, string nombre_ingresar, string direccion_ingresar, string telefono_ingresar)
+
+        [JsonConstructor]
+        public Cadete(int Id, string Nombre, string Direccion, string Telefono)
         {
-            this.Id = ID_ingresar;
-            this.Nombre = nombre_ingresar;
-            this.Direccion = direccion_ingresar;
-            this.Telefono = telefono_ingresar;
+            this.Id = Id;
+            this.Nombre = Nombre;
+            this.Direccion = Direccion;
+            this.Telefono = Telefono;
         }
-        public Cadete() { }
+        // public Cadete() { }
         public int ObtenerIDCadete()
         {
             return Id;
