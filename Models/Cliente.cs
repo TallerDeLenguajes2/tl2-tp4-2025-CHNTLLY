@@ -7,12 +7,12 @@ namespace EspacioCliente
         public string telefono { get; set; }
         public string datosReferenciaDireccion { get; set; }
 
-        public Cliente(string nombreCliente, string direccionCliente, string telefonoCliente, string datosRefCliente)
+        public Cliente(string nombre, string direccion, string telefono, string datosReferenciaDireccion)
         {
-            this.nombre = nombreCliente;
-            this.direccion = direccionCliente;
-            this.telefono = telefonoCliente;
-            this.datosReferenciaDireccion = datosRefCliente;
+            this.nombre = nombre;
+            this.direccion = direccion;
+            this.telefono = telefono;
+            this.datosReferenciaDireccion = datosReferenciaDireccion;
         }
         public string obtenerDireccionCLiente()
         {

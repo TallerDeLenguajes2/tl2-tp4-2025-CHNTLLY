@@ -1,7 +1,121 @@
 [
-    {"numero":1, "observacion":"entregar a direccion XXXXXXX", "estado":false},
-    {"numero":2, "observacion":"entregar a direccion XXXXXXX", "estado":false},
-    {"numero":3, "observacion":"entregar a direccion XXXXXXX", "estado":false},
-    {"numero":4, "observacion":"entregar a direccion XXXXXXX", "estado":false},
-    {"numero":5, "observacion":"entregar a direccion XXXXXXX", "estado":true}
+  {
+    "numero": 1,
+    "observacion": "entregar a direccion XXXXXXX",
+    "cliente": {
+      "nombre": "\u0000",
+      "direccion": "\u0000",
+      "telefono": "\u0000",
+      "datosReferenciaDireccion": "\u0000"
+    },
+    "estado": false,
+    "cadete": {
+      "Id": -999,
+      "Nombre": "\u0000",
+      "Direccion": "\u0000",
+      "Telefono": "\u0000"
+    }
+  },
+  {
+    "numero": 2,
+    "observacion": "entregar a direccion XXXXXXX",
+    "cliente": {
+      "nombre": "\u0000",
+      "direccion": "\u0000",
+      "telefono": "\u0000",
+      "datosReferenciaDireccion": "\u0000"
+    },
+    "estado": false,
+    "cadete": {
+      "Id": -999,
+      "Nombre": "\u0000",
+      "Direccion": "\u0000",
+      "Telefono": "\u0000"
+    }
+  },
+  {
+    "numero": 3,
+    "observacion": "entregar a direccion XXXXXXX",
+    "cliente": {
+      "nombre": "\u0000",
+      "direccion": "\u0000",
+      "telefono": "\u0000",
+      "datosReferenciaDireccion": "\u0000"
+    },
+    "estado": false,
+    "cadete": {
+      "Id": 7,
+      "Nombre": "Mart\u00EDn Herrera",
+      "Direccion": "Av. Aconquija 2000, Yerba Buena",
+      "Telefono": "3814765432"
+    }
+  },
+  {
+    "numero": 4,
+    "observacion": "entregar a direccion XXXXXXX",
+    "cliente": {
+      "nombre": "\u0000",
+      "direccion": "\u0000",
+      "telefono": "\u0000",
+      "datosReferenciaDireccion": "\u0000"
+    },
+    "estado": false,
+    "cadete": {
+      "Id": -999,
+      "Nombre": "\u0000",
+      "Direccion": "\u0000",
+      "Telefono": "\u0000"
+    }
+  },
+  {
+    "numero": 5,
+    "observacion": "entregar a direccion XXXXXXX",
+    "cliente": {
+      "nombre": "\u0000",
+      "direccion": "\u0000",
+      "telefono": "\u0000",
+      "datosReferenciaDireccion": "\u0000"
+    },
+    "estado": true,
+    "cadete": {
+      "Id": -999,
+      "Nombre": "\u0000",
+      "Direccion": "\u0000",
+      "Telefono": "\u0000"
+    }
+  },
+  {
+    "numero": 6,
+    "observacion": "aaaaaaaaaaaa",
+    "cliente": {
+      "nombre": "aaaaaaaaaaa",
+      "direccion": "aaaaaaaaaaaaaaa",
+      "telefono": "aaaaaaaaaaaaaaaaaaaaa",
+      "datosReferenciaDireccion": "aaaaaaaaaaaaaaa"
+    },
+    "estado": true,
+    "cadete": {
+      "Id": 2,
+      "Nombre": "Mar\u00EDa L\u00F3pez",
+      "Direccion": "Calle San Mart\u00EDn 456, Yerba Buena",
+      "Telefono": "3815123456"
+    }
+  },
+  {
+    "numero": 7,
+    "observacion": "Observacion con SwaggerUI",
+    "cliente": {
+      "nombre": "nombreCliente con SwaggerUI",
+      "direccion": "direccionCliente con SwaggerUI",
+      "telefono": "telefonoCliente con SwaggerUI",
+      "datosReferenciaDireccion": "datos de referencia con SwaggerUI"
+    },
+    "estado": true,
+    "cadete": {
+      "Id": 3,
+      "Nombre": "nombreCadete con SwaggerUI",
+      "Direccion": "direccionCadete con SwaggerUI",
+      "Telefono": "telefonoCadete con SwaggerUI"
+    }
+  }
 ]
