@@ -2,6 +2,7 @@ using EspacioCadete;
 using EspacioPedido;
 using EspacioInformeCadete;
 using EspacioInformeCadeteria;
+using System.Text.Json.Serialization;
 namespace EspacioCadeteria
 {
     public class Cadeteria
@@ -13,10 +14,15 @@ namespace EspacioCadeteria
         public List<InformeCadete> ListadoInforme { get; set; } = new List<InformeCadete>();
         public InformeGeneral InformeTotal { get; set; }
 
-        public Cadeteria(string nombreInsertar, string telefonoInsertar)
+        [JsonConstructor]
+        public Cadeteria(string Nombre, string Telefono)
         {
-            this.Nombre = nombreInsertar;
-            this.Telefono = telefonoInsertar;
+            this.Nombre = Nombre;
+            this.Telefono = Telefono;
+            this.ListadoCadetes = null;
+            this.ListadoPedidos = null;
+            this.ListadoInforme = null;
+            this.InformeTotal = null;
         }
         public Cadeteria() { }
 

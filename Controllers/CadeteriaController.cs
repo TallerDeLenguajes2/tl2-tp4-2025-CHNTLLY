@@ -1,5 +1,8 @@
-using AccesoADatos;
+using EspacioAccesoADatosCadeteria;
+using EspacioAccesoADatosCadetes;
+using EspacioAccesoADatosPedidos;
 using EspacioCadete;
+using EspacioAccesoADatosInformes;
 using EspacioInformeCadete;
 using EspacioInformeCadeteria;
 using EspacioPedido;
@@ -12,47 +15,58 @@ namespace EspacioCadeteriaControllers
     [Route("api/{controller}")]
     public class CadeteriaController : ControllerBase
     {
-        private AccesoADatosJSON accesoADatos;
+        private AccesoADatosCadeteria ADCadeteria;
+        private AccesoADatosCadetes ADCadetes;
+        private AccesoADatosPedidos ADPedidos;
+        private AccesoADatosInformes ADInformes;
+        private Cadeteria cadeteria;
+
         public CadeteriaController()
         {
-            accesoADatos = new AccesoADatosJSON();
+            ADCadeteria = new AccesoADatosCadeteria();
+            ADCadetes = new AccesoADatosCadetes();
+            ADPedidos = new AccesoADatosPedidos();
+            ADInformes = new AccesoADatosInformes();
+
+            cadeteria = ADCadeteria.Obtener("./data/datosCadeteria.json");
+            cadeteria.ListadoCadetes = ADCadetes.Obtener("./data/datosCadetes.json");
+            cadeteria.ListadoPedidos = ADPedidos.Obtener("./data/datosPedidos.json");
+            cadeteria.ListadoInforme = ADInformes.Obtener("./data/datosInformes.json");
         }
+
         [HttpGet("GetPedidos")]
         public IActionResult GetPedidos()
         {
-            List<Pedido> listadoPedidos = accesoADatos.LeerPedidos("./data/datosPedidos.json");
-            return Ok(listadoPedidos);
+            return Ok(cadeteria.ListadoPedidos);
         }
         [HttpGet("GetCadetes")]
         public IActionResult GetCadetes()
         {
-            List<Cadete> listadoCadetes = accesoADatos.LeerCadetes("./data/datosCadetes.json");
-            return Ok(listadoCadetes);
+            return Ok(cadeteria.ListadoCadetes);
         }
         [HttpGet("GetInforme")]
         public IActionResult GetInforme()
         {
-            List<InformeCadete> listadoInformes = accesoADatos.LeerInformeCadetes("./data/datosInformes.json");
-            InformeGeneral InformeTotal = Cadeteria.GenerarInforme(listadoInformes);
+            InformeGeneral InformeTotal = Cadeteria.GenerarInforme(cadeteria.ListadoInforme);
             return Ok(InformeTotal);
         }
 
         [HttpPost("AgregarPedidos")]
-        public IActionResult AgregarPedidos(Pedido pedido)
+        public ActionResult<AccesoADatosPedidos> AgregarPedidos(Pedido pedido)
         {
-            Pedido pedidoCreated = accesoADatos.AddPedido(pedido, "./data/datosPedidos.json");
-            return Created();
+            Pedido pedidoCreated = ADPedidos.AddPedido(pedido,"./data/datosPedidos.json");
+            return Created("",pedidoCreated);
         }
 
         [HttpPut("AsignarPedido")]
         public IActionResult AsignarPedido(int idPedido, int idCadete)
         {
-            var pedidoBuscado = accesoADatos.GetPedidoById(idPedido, "./data/datosPedidos.json");
-            var cadeteBuscado = accesoADatos.GetCadeteById(idCadete, "./data/datosCadetes.json");
+            var pedidoBuscado = ADPedidos.GetPedidoById(idPedido, "./data/datosPedidos.json");
+            var cadeteBuscado = ADCadetes.GetCadeteById(idCadete, "./data/datosCadetes.json");
             if (pedidoBuscado == null && cadeteBuscado == null) return NotFound("pedido y cadete no encontrados");
             if (pedidoBuscado == null) return NotFound("pedido no encontrado");
             if (cadeteBuscado == null) return NotFound("cadete no encontrado");
-            var ListadoPedidos = accesoADatos.LeerPedidos("./data/datosPedidos.json");
+            var ListadoPedidos = ADPedidos.Obtener("./data/datosPedidos.json");
             foreach (var pedido in ListadoPedidos)
             {
                 if (pedido.numero == idPedido)
@@ -60,16 +74,16 @@ namespace EspacioCadeteriaControllers
                     pedido.cadete = cadeteBuscado;
                 }
             }
-            accesoADatos.escribirPedidosJSON(ListadoPedidos, "./data/datosPedidos.json");
+            ADPedidos.Guardar(ListadoPedidos, "./data/datosPedidos.json");
             return Ok("Cadete asignado a Pedido correctamente");
         }
 
         [HttpPut("CambiarEstadoPedido")]
         public IActionResult CambiarEstadoPedido(int idPedido, bool NuevoEstado)
         {
-            var pedidoBuscado = accesoADatos.GetPedidoById(idPedido, "./data/datosPedidos.json");
+            var pedidoBuscado = ADPedidos.GetPedidoById(idPedido, "./data/datosPedidos.json");
             if (pedidoBuscado == null) return NotFound("pedido no encontrado");
-            var ListadoPedidos = accesoADatos.LeerPedidos("./data/datosPedidos.json");
+            var ListadoPedidos = ADPedidos.Obtener("./data/datosPedidos.json");
             foreach (var pedido in ListadoPedidos)
             {
                 if (pedido.numero == idPedido)
@@ -77,18 +91,18 @@ namespace EspacioCadeteriaControllers
                     pedido.estado = NuevoEstado;
                 }
             }
-            accesoADatos.escribirPedidosJSON(ListadoPedidos, "./data/datosPedidos.json");
+            ADPedidos.Guardar(ListadoPedidos, "./data/datosPedidos.json");
             return Ok("Estado del pedido cambiado correctamente");
         }
         [HttpPut("CambiarCadetePedido")]
         public IActionResult CambiarCadetePedido(int idPedido, int idNuevoCadete)
         {
-            var pedidoBuscado = accesoADatos.GetPedidoById(idPedido, "./data/datosPedidos.json");
-            var cadeteBuscado = accesoADatos.GetCadeteById(idNuevoCadete, "./data/datosCadetes.json");
+            var pedidoBuscado = ADPedidos.GetPedidoById(idPedido, "./data/datosPedidos.json");
+            var cadeteBuscado = ADCadetes.GetCadeteById(idNuevoCadete, "./data/datosCadetes.json");
             if (pedidoBuscado == null && cadeteBuscado == null) return NotFound("pedido y cadete no encontrados");
             if (pedidoBuscado == null) return NotFound("pedido no encontrado");
             if (cadeteBuscado == null) return NotFound("cadete no encontrado");
-            var ListadoPedidos = accesoADatos.LeerPedidos("./data/datosPedidos.json");
+            var ListadoPedidos = ADPedidos.Obtener("./data/datosPedidos.json");
             foreach (var pedido in ListadoPedidos)
             {
                 if (pedido.numero == idPedido)
@@ -96,7 +110,7 @@ namespace EspacioCadeteriaControllers
                     pedido.cadete = cadeteBuscado;
                 }
             }
-            accesoADatos.escribirPedidosJSON(ListadoPedidos, "./data/datosPedidos.json");
+            ADPedidos.Guardar(ListadoPedidos, "./data/datosPedidos.json");
             return Ok("Cadete asignado a Pedido correctamente");
         }
     }
