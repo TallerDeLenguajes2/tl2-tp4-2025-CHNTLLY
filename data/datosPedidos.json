@@ -136,54 +136,20 @@
     }
   },
   {
-    "numero": 9,
-    "observacion": "string",
+    "numero": 0,
+    "observacion": "Actualizado",
     "cliente": {
-      "nombre": "string",
-      "direccion": "string",
-      "telefono": "string",
-      "datosReferenciaDireccion": "string"
+      "nombre": "Actualizado",
+      "direccion": "Actualizado",
+      "telefono": "Actualizado",
+      "datosReferenciaDireccion": "Actualizado"
     },
     "estado": true,
     "cadete": {
       "Id": 0,
-      "Nombre": "string",
-      "Direccion": "string",
-      "Telefono": "string"
-    }
-  },
-  {
-    "numero": 10,
-    "observacion": "blablalblalal",
-    "cliente": {
-      "nombre": "facundo",
-      "direccion": "XXXXXX",
-      "telefono": "st381XXXXXring",
-      "datosReferenciaDireccion": "string"
-    },
-    "estado": false,
-    "cadete": {
-      "Id": 7,
-      "Nombre": "Mart\u00EDn Herrera",
-      "Direccion": "Av. Aconquija 2000, Yerba Buena",
-      "Telefono": "3814765432"
-    }
-  },
-  {
-    "numero": 11,
-    "observacion": "string",
-    "cliente": {
-      "nombre": "string",
-      "direccion": "string",
-      "telefono": "string",
-      "datosReferenciaDireccion": "string"
-    },
-    "estado": true,
-    "cadete": {
-      "Id": 0,
-      "Nombre": "string",
-      "Direccion": "string",
-      "Telefono": "string"
+      "Nombre": "Actualizado",
+      "Direccion": "Actualizado",
+      "Telefono": "Actualizado"
     }
   }
 ]

@@ -54,8 +54,8 @@ namespace EspacioCadeteriaControllers
         [HttpPost("AgregarPedidos")]
         public ActionResult<AccesoADatosPedidos> AgregarPedidos(Pedido pedido)
         {
-            Pedido pedidoCreated = ADPedidos.AddPedido(pedido,"./data/datosPedidos.json");
-            return Created("",pedidoCreated);
+            Pedido pedidoCreated = ADPedidos.AddPedido(pedido, "./data/datosPedidos.json");
+            return Created("", pedidoCreated);
         }
 
         [HttpPut("AsignarPedido")]
@@ -112,6 +112,33 @@ namespace EspacioCadeteriaControllers
             }
             ADPedidos.Guardar(ListadoPedidos, "./data/datosPedidos.json");
             return Ok("Cadete asignado a Pedido correctamente");
+        }
+        [HttpDelete("BorrarPedido")]
+        public IActionResult BorrarPedido(int idPedido)
+        {
+            var ListadoPedidos = ADPedidos.Obtener("./data/datosPedidos.json");
+            var pedidoBuscado = ListadoPedidos.FirstOrDefault(p => p.numero == idPedido);
+            if (pedidoBuscado == null) return NotFound("pedido no encontrado, no se elimino nada de la lista");
+            ListadoPedidos.Remove(pedidoBuscado);
+            ADPedidos.Guardar(ListadoPedidos, "./data/datosPedidos.json");
+            return Ok("Pedido encontrado y eliminado correctamente de la lista");
+        }
+        [HttpPut("ActualizarPedido")]
+        public IActionResult ActualizarPedido(int idPedido, Pedido pedido)
+        {
+            var ListadoPedidos = ADPedidos.Obtener("./data/datosPedidos.json");
+            var pedidoBuscado = ListadoPedidos.FirstOrDefault(p => p.numero == idPedido);
+            if (pedidoBuscado == null) return NotFound("No se encontro el pedido y no se actualizo en la lista de pedidos");
+            for (int i = 0; i < ListadoPedidos.Count(); i++)
+            {
+                if (ListadoPedidos[i].numero == idPedido)
+                {
+                    ListadoPedidos[i] = pedido;
+                    break;
+                }
+            }
+            ADPedidos.Guardar(ListadoPedidos, "./data/datosPedidos.json");
+            return Ok("Pedido encontrado y actualizado corectamente");
         }
     }
 }
